@@ -1,14 +1,10 @@
 <h1>Login</h1>
 <%= form_with  url: login_path do |f| %>
-  <% if @boolean ==false %>
-    <div class='alert alert-danger'>
-    <div><%= @message%></div>
-    </div>
-    <% else %>
-    <div><%= @message%></div>
-    
-  <% end %>
-
+  <div>
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
+  </div>
   <div class="mb-3">
     <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>

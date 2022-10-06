@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-
-  get "logout", to:"logout#index"
-  post "logout", to:"logout#logout"
-  get "login", to:"login#index"
-  post "login", to:"login#login"
+  root "tutorial9#index"
+  get "/tutorial9", to: "tutorial9#index"
+  post "/tutorial9", to: "tutorial9#upload"
 end
