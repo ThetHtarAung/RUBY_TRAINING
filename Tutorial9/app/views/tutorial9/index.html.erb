@@ -1,0 +1,18 @@
+<h1>Image Upload</h1>
+<%= form_with url: "/tutorial9" , multipart: true  do |form| %>
+  <div class="mb-3">
+  <%= form.label :title, "Folder Name: " %>
+  <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+  <%= file_field_tag :picture, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+
