@@ -1,0 +1,19 @@
+<h1>Tutorial10</h1>
+<%= form_with url: "/tutorial10" , multipart: true  do |form| %>
+  <div class="mb-3">
+  <%= form.label :title, "File Name: " %>
+  <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+  <%= form.label :type, "Enter file type: " %>
+  <%= form.text_field :type, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+  <%= form.submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+
