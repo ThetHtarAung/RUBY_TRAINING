@@ -87,6 +87,9 @@ GEM
     debug (1.4.0)
       irb (>= 1.3.6)
       reline (>= 0.2.7)
+    docx (0.7.0)
+      nokogiri (~> 1.13, >= 1.13.0)
+      rubyzip (~> 2.0)
     erubi (1.11.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -214,6 +217,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  docx
   importmap-rails
   jbuilder
   puma (~> 5.0)
