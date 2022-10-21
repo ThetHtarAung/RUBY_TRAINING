@@ -1,0 +1,42 @@
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+<div class="card" style="width:100%;">
+  <div class="card-header" style="background:#02360B;color:white">
+    Log in
+  </div>
+  <div>
+  <%= form_with url:login_path  do |form| %>
+  <div class = "login">
+    <div class="mb-3 row">
+      <label for="inputEmail" class="col-sm-2 col-form-label">Email Address:</label>
+      <div class="col-sm-8">
+      <%= form.text_field :email, class: 'form-control' %> 
+      </div>
+    </div>
+  
+    <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+      <div class="col-sm-8">
+      <%= form.password_field :password, class: 'form-control' %>  
+      </div>
+    </div>
+    <div class:'col-sm-4'>
+      <%= form.check_box :remember_me %>
+      <%= form.label :remember_me, "Remember me" %>
+      <%= link_to 'Forgotten password?', root_path%>
+    </div>
+    <div>
+      <div class = "actions">
+      <%= form.submit 'Log In', class:'col-sm-8' %>
+      </div>
+    </div>
+    <div>
+    <%= link_to 'Create account?', new_user_path%>
+    </div>
+  </div>
+ 
+  <% end %>
+ 
+</div>
