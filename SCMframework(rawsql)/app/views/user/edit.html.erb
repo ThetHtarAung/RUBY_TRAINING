@@ -1,0 +1,62 @@
+<div class="card" style="width:100%;">
+  <div class="card-header" style="background:#02360B;color:white">
+    Register
+  </div>
+  <div class="login">
+
+  <%= form_for @user  do |form| %>
+    <div class="mb-3 row">
+    <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-8">
+    <%= form.text_field :name, class: 'form-control' %> 
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
+    <div class="col-sm-8">
+    <%= form.text_field :email, class: 'form-control' %> 
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for="inputType" class="col-sm-2 col-form-label">Type:</label>
+    <div class="col-sm-8">
+    <%= form.text_field :user_type, class: 'form-control' %> 
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for="inputdob" class="col-sm-2 col-form-label">Date of Birth:</label>
+    <div class="col-sm-8">
+    <%= form.text_field :dob, class: 'form-control' %> 
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for="inputAddress" class="col-sm-2 col-form-label">Address:</label>
+    <div class="col-sm-8">
+    <%= form.text_field :address, class: 'form-control' %> 
+    </div>
+    </div>
+    <div class="mb-3 row">
+    <label for="inputPhoto" class="col-sm-2 col-form-label">Old Profile:</label>
+    <%= image_tag "#{@user.profile}" , class: 'img' %>
+   
+    </div>
+    <div class="mb-3 row">
+    <label for="inputPhoto" class="col-sm-2 col-form-label">New Profile:</label>
+    <div class="col-sm-8">
+    <%= form.file_field :profile, class: 'form-control' %> 
+    </div>
+    </div>
+    
+  <div class = "actions">
+  <%= form.submit 'Edit', class:'btn btn-primary mb-3'%>
+  <%= form.submit 'Clear', type: :reset, class:'btn btn-secondary mb-3'%>
+
+
+  <%= link_to 'Change Password'%>
+  </div>
+  </div>
+
+  <% end %>
+  </div>
+  </div>
+

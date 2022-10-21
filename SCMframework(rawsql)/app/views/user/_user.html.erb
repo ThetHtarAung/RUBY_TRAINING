@@ -1,0 +1,150 @@
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: "" %>
+<% end -%>
+
+
+<div class="card">
+  <div class="card-header" style="background:#02360B;color:white;width:100%;">
+    User List
+  </div>
+  <div class="form1">
+  <div class="row g-2">
+  <%= form_with url:search_user_path do |form| %>
+  
+  <div class="col-auto">
+    <label for="inputName" class="col-sm-0 col-form-label">Name:</label>
+    <%= form.text_field :name, class: ' col-sm-2' %> 
+    <label for="inputName" class="col-sm-0 col-form-label">Email:</label>
+    <%= form.text_field :email, class: ' col-sm-2' %> 
+    <label for="inputName" class="col-sm-0 col-form-label">From:</label>
+    <%= form.date_field :from, class: 'col-sm-2' %>
+    <label for="inputName" class="col-sm-0 col-form-label">To:</label>
+    <%= form.date_field :to, class: 'col-sm-2' %>
+    <%= form.submit 'Search', class:'btn btn-success mb-3'%>
+  </div>
+  <% end %>
+  <%= form_tag import_user_index_path, method: :post, multipart: true do %>
+    <%= file_field_tag :file, accept: ".csv" %>
+    <%= submit_tag '⚙️ Import' , class:"btn btn-success mb-3" %>
+    <%=  link_to "Download", user_index_path(format: :csv) ,class:"btn btn-success mb-3" %>
+    <%=  link_to "Create User", new_user_path ,class:"btn btn-success mb-3" %>
+    
+  <% end %>
+  </div>
+  </div>
+ 
+  <div style="overflow-x:auto;" class="table">
+    <table>
+      <thead>
+      <tr>
+      <th scope="col">No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Created User</th>
+      <th scope="col">Type</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Address</th>
+      <th scope="col">Created_date</th>
+      <th scope="col">Updated_date</th>
+      <th scope="col">Operation</th>
+      <th scope="col">Operation</th>
+      </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <% @user.each do |user| %>
+       
+          <tr>
+          <th scope="row"><%= user.id %></th>
+        
+          <td><button type="button" class="button" onclick="myFunction(#{user.id})"><%= user.name %></button></td>
+          
+          
+          <td><%= user.email %></td>
+          <td><%= user.name %></td>
+          <td><%= user.user_type %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.dob %></td>
+          <td><%= user.address %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.updated_at %></td>
+          <td><%= link_to "Delete", delete_user_path(user),  data: {turbo_method: :delete }, turbo_confirm: "Are you sure?",class:'btn btn-danger mb-3' %></td>
+          <td><%= link_to "Edit", edit_user_path(user.id), class:'btn btn-success mb-3' %></td>
+          
+          </tr>
+
+      
+
+
+            
+        <div class="toast-container bottom-10 end-10 p-3">
+          <div id="liveToast" class="toast bg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+
+            <strong class="me-auto">User Detail</strong>
+
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body"> 
+    
+              <label class="col-sm-4 col-form-label">Name</label>
+              <%= user.name %> <br/>
+              <label class="col-sm-4 col-form-label">Type</label>
+              <%= user.user_type %><br/>
+              <label class="col-sm-4 col-form-label">Email</label>
+              <%= user.email %><br/>
+              <label class="col-sm-4 col-form-label">Phone</label>
+              <%= user.phone %><br/>
+              <label class="col-sm-4 col-form-label">Date of Birth</label>
+              <%= user.dob %><br/>
+              <label class="col-sm-4 col-form-label">Address</label>
+              <%= user.address %><br/>
+              <label class="col-sm-4 col-form-label">Created Date</label>
+              <%= user.created_at %><br/>
+              <label class="col-sm-4 col-form-label">Created User</label>
+              <%= user.name %><br/>
+              <label class="col-sm-4 col-form-label">Updated Date</label>
+              <%= user.updated_at %><br/>
+              <label class="col-sm-4 col-form-label">Updated User</label>
+              <%= user.name %><br/>
+            </div>
+            <div class="mt-2 pt-2 border-top">
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+            </div>
+
+          </div>
+        </div>
+      
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+ 
+</div>
+
+
+
+
+
+<script>
+function myFunction(data) {
+ 
+  var toastLiveExample = document.getElementById('liveToast')
+  
+   
+      var toast = new bootstrap.Toast(toastLiveExample)
+
+      toast.show()
+      
+  
+}
+</script>
+
+
+
+
+
+
+
+
+
