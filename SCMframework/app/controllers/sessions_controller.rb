@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     password = User.find_by(password: params[:password])
     if user.present? && password.present?
+      @email = user.email
       session[:name] = user.name
       flash[:notice] = "Logged in successfully"
       redirect_to user_index_path 
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
     end
   end
   def destroy
-    session[:name] = nil
+    session[:id] = nil
     flash[:notice] = "Logged out successfully"
     redirect_to login_path
   end

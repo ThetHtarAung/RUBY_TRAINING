@@ -23,6 +23,7 @@ class UserController < ApplicationController
     @user = User.new(user_params_create)
     @is_user_create = UserService.createUser(@user)
     if @is_user_create
+      UserMailer.welcome_email(@user).deliver
       redirect_to user_index_path
     else
       
@@ -44,13 +45,13 @@ class UserController < ApplicationController
   end
   def destroy
     @user = UserService.getUserByID(params[:id])
-    puts @user
     @is_user_destroy = UserService.deleteUser(@user)
-    if @is_user_destroy
-      redirect_to user_index_path
-    else
-      
-    end
+    respond_to do |format|
+      format.html { redirect_to user_index_path }
+      format.json { head :no_content }
+      format.js   { render :layout => false }
+   end
+    
  
    
   end
